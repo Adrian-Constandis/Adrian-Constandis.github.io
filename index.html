@@ -113,12 +113,15 @@
   <footer>
     <p>© 2025 Adrian – All rights reserved.</p>
   </footer>
-  <script>
-  window.addEventListener('load', () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // Delay scroll a bit to make sure page layout finishes
+    setTimeout(() => {
+      const section = document.getElementById('about'); // Change to any section you want
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 200); // 200 milliseconds delay
   });
 </script>
 
