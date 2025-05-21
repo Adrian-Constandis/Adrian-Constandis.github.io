@@ -114,16 +114,32 @@
     <p>© 2025 Adrian – All rights reserved.</p>
   </footer>
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // Delay scroll a bit to make sure page layout finishes
+  window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-      const section = document.getElementById('about'); // Change to any section you want
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+      const target = document.getElementById("about"); // or "whyapply"
+      if (!target) return;
+
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 400; // scroll speed in ms — lower = faster
+      let start = null;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percent = Math.min(progress / duration, 1);
+        window.scrollTo(0, startPosition + distance * percent);
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
       }
-    }, 200); // 200 milliseconds delay
+
+      window.requestAnimationFrame(step);
+    }, 200);
   });
 </script>
+
 
 
 </body>
